@@ -1,11 +1,30 @@
 <?php
 
+use App\Http\Controllers\frutasController;
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('inicio'); // Nombre de la ruta.
+
+// Ruta que llama al controlador frutasController.
+Route::get('/frutas', [frutasController::class, 'index'])
+    ->name('frutas');
+// Se puede acceder a la ruta mediante la URL: */fruteria/frutas
+Route::prefix('fruteria')->group(function () {
+    Route::get('/frutas', [frutasController::class, 'index'])
+        ->name('frutas');
+    Route::get('/naranjas/{pais?}', [frutasController::class, 'naranjas'])
+        ->name('naranjas');
+    Route::get('/peras', [frutasController::class, 'peras'])->name('peras');
+});
+
+/*
+Route::get('/naranjas/{pais?}', [frutasController::class, 'naranjas'])
+    ->name('naranjas');
+Route::get('/peras', [frutasController::class, 'peras'])->name('peras');
+*/
 
 // Vamos a cargar la vista child.
 Route::view('child', 'child');
