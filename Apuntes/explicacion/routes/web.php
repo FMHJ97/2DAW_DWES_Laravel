@@ -13,6 +13,12 @@ Route::get('/frutas', [frutasController::class, 'index'])
     ->name('frutas');
 // Se puede acceder a la ruta mediante la URL: */fruteria/frutas
 Route::prefix('fruteria')->group(function () {
+    // POST
+    Route::post('/frutas', [frutasController::class, 'index'])
+        ->name('postfrutas');
+    Route::post('/frutas', [frutasController::class, 'store'])
+    ->name('store');
+    // GET
     Route::get('/frutas', [frutasController::class, 'index'])
         ->name('frutas');
     Route::get('/naranjas/{pais?}', [frutasController::class, 'naranjas'])
@@ -44,7 +50,8 @@ Route::get('contacto/{nombre?}/{edad?}',
     // Alternativa para enviar el parámetro a la vista.
     // return view('contacto', compact('name', 'edad'));
 
-})->name('contacto')->where(['nombre' => '[A-Za-z]+' , 'edad' => '[0-9]+']);
+})->name('contacto')->where(['nombre' => '[A-Za-z]+' , 'edad' => '[0-9]+'])
+    ->middleware('mayor.edad:25'); // Se aplica el middleware mayor.edad.
 
 // Ruta que no necesita el token de CSRF, es decir, no necesita protección
 // contra ataques de falsificación de solicitudes entre sitios.

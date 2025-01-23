@@ -24,4 +24,15 @@ class frutasController extends Controller
     public function peras(){
         return "Peras";
     }
+
+    // public function store(Request $request){
+    //     return $request->input('nombre');
+    // }
+
+    public function store(Request $request){
+        if ($request->input('nombre') != "Manzana") {
+            return to_route('frutas')->withInput();
+        }
+        return $request->all();
+    }
 }
