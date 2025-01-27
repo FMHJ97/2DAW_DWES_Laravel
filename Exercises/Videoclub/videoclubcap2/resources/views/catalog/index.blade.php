@@ -10,12 +10,13 @@
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- Mostramos las películas -->
-                    <div class="grid grid-cols-4">
+                    <!-- 4 películas por fila y centradas -->
+                    <div class="grid grid-cols-1 gap-4 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         @foreach ($arrayPeliculas as $key => $pelicula)
-                            <div class="p-4">
+                            <div class="flex flex-col items-center">
                                 <a href="{{ url('/catalog/show/' . $key) }}">
-                                    <img src="{{ $pelicula['poster'] }}" style="height:200px" />
-                                    <h4 class="text-lg font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                                    <img src="{{ $pelicula['poster'] }}" style="height:300px" />
+                                    <h4 style="min-height: 45px; margin:5px 0 10px 0;">
                                         {{ $pelicula['title'] }}</h4>
                                 </a>
                             </div>
