@@ -9,11 +9,11 @@ Route::get('/', [HomeController::class, 'getHome'])->name('inicio')->middleware(
 
 Route::get('/catalog', [CatalogController::class, 'getIndex'])->name('dashboard');
 
-Route::get('/catalog/show/{id?}', [CatalogController::class, 'getShow'])->name('show');
+Route::get('/catalog/show/{id}', [CatalogController::class, 'getShow'])->name('show');
 
 Route::get('/catalog/create', [CatalogController::class, 'getCreate'])->name('create');
 
-Route::get('/catalog/edit/{id?}', [CatalogController::class, 'getEdit'])->name('edit');
+Route::get('/catalog/edit/{id}', [CatalogController::class, 'getEdit'])->name('edit');
 
 /*Route::get('/', function () {
     return view('welcome');

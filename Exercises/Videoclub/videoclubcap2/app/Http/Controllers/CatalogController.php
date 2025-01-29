@@ -170,9 +170,9 @@ class CatalogController extends Controller
         )
     );
 
-    public function getEdit($id = '0')
+    public function getEdit($id)
     {
-        return view('catalog.edit')->with('id', $id);
+        return view('catalog.edit')->with('pelicula', $this->arrayPeliculas[$id])->with('id', $id);
     }
 
     public function getCreate()
@@ -180,9 +180,9 @@ class CatalogController extends Controller
         return view('catalog.create');
     }
 
-    public function getShow($id = '0')
+    public function getShow($id)
     {
-        return view('catalog.show')->with('pelicula', $this->arrayPeliculas[$id]);
+        return view('catalog.show')->with('pelicula', $this->arrayPeliculas[$id])->with('id', $id);
     }
 
     public function getIndex()
