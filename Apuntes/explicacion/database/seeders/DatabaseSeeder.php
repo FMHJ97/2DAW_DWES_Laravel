@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +16,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        /* Queremos borrar los datos de la tabla frutas */
+        DB::table('frutas')->delete();
+        /* A continuación, insertamos los datos */
+        DB::table('frutas')->insert([
+            ['nombre' => 'Manzana', 'temporada' => 1, 'pais' => 'España'],
+            ['nombre' => 'Naranja', 'temporada' => 2, 'pais' => 'Colombia'],
+            ['nombre' => 'Pera', 'temporada' => 3, 'pais' => 'Francia'],
+            ['nombre' => 'Plátano', 'temporada' => 4, 'pais' => 'Ecuador']
         ]);
     }
 }

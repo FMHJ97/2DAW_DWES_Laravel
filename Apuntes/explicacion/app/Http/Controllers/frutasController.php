@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormFrutasRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class frutasController extends Controller
 {
@@ -21,7 +22,8 @@ class frutasController extends Controller
 
     public function naranjas($pais = "España")
     {
-        return "Naranjas de $pais";
+        $allfrutas = DB::table('frutas')->get();
+        return view('frutas.naranjas')->with('frutas', $allfrutas);
     }
 
     public function peras()
