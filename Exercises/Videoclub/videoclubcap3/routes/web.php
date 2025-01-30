@@ -15,6 +15,16 @@ Route::get('/catalog/create', [CatalogController::class, 'getCreate'])->name('cr
 
 Route::get('/catalog/edit/{id}', [CatalogController::class, 'getEdit'])->name('edit');
 
+Route::post('/catalog/create', [CatalogController::class, 'postCreate'])->name('postCreate')->middleware('auth');
+
+Route::put('/catalog/edit/{id}', [CatalogController::class, 'putEdit'])->name('putEdit')->middleware('auth');
+
+Route::put('/catalog/rent/{id}', [CatalogController::class, 'putRent'])->name('putRent')->middleware('auth');
+
+Route::put('/catalog/return/{id}', [CatalogController::class, 'putReturn'])->name('putReturn')->middleware('auth');
+
+Route::delete('/catalog/delete/{id}', [CatalogController::class, 'deleteMovie'])->name('deleteMovie')->middleware('auth');
+
 /*Route::get('/', function () {
     return view('welcome');
 });
