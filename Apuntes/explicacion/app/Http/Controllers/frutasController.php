@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FormFrutasRequest;
+use App\Models\Fruta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,10 @@ class frutasController extends Controller
 
     public function peras()
     {
-        return "Peras";
+        $fruta = Fruta::find(221);
+        // $frutas = Fruta::all();
+        // return view('frutas.peras')->with('frutas', $frutas);
+        return view('frutas.peras')->with('fruta', $fruta);
     }
 
     // public function store(Request $request){
