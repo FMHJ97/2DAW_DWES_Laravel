@@ -16,10 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('profesor.index')" :active="request()->routeIs('profesor.index')">
-                        {{ __('Mis Profesores') }}
+                        {{ __('Mis alumnos') }}
                     </x-nav-link>
                     <x-nav-link :href="route('profesor.create')" :active="request()->routeIs('profesor.create')">
                         {{ __('Añadir alumno') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('profesor.nota')" :active="request()->routeIs('profesor.nota')">
+                        {{ __('Asignar nota') }}
                     </x-nav-link>
                 </div>
             </div>

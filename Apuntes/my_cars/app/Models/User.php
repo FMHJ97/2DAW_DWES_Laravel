@@ -21,7 +21,7 @@ class User extends Authenticatable
         'dni',
         'name',
         'surname',
-        'especialization',
+        'address',
         'email',
         'password',
     ];
@@ -47,16 +47,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function students()
-    {
-        return $this->belongsToMany(Student::class)
-            ->withPivot('asignatura', 'nota');;
-    }
-
-    public function uniqueEstudiantes()
-    {
-        return $this->belongsToMany(Student::class)->distinct();
     }
 }
