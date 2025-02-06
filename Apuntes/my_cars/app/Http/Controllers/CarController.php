@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -12,7 +13,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        //
+        return view('cars.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -28,7 +29,33 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'plate' => 'required|unique:cars,plate', // The plate must be unique in the cars table.
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required|integer',
+            'color' => 'required',
+            'revision_date' => 'required|date',
+            'image' => 'required|image',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        $new_car = new Car();
+        $new_car->plate = $request->plate;
+        $new_car->brand = $request->brand;
+        $new_car->model = $request->model;
+        $new_car->year = $request->year;
+        $new_car->color = $request->color;
+        $new_car->revision_date = $request->revision_date;
+        $new_car->price = $request->price;
+        $new_car->user_id = Auth::id(); // Get the id of the authenticated user.
+
+        // Save the image in the public folder.
+        $name_image = time() . "_" . $request->file('image')->getClientOriginalName(); // Get the name of the image.
+        $new_car->image = $name_image; // Save the name of the image in the database.
+
+        // Save the car in the database.
+        $new_car->save();
     }
 
     /**

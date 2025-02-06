@@ -9,7 +9,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Car extends Model
 {
     /** @use HasFactory<\Database\Factories\CarFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    use softDeletes;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $guarded = [];
+
+    public function propietario()
+    {
+        /*
+        La foreign key es user_id, por lo que se pasa como segundo argumento al método belongsTo.
+        */
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
