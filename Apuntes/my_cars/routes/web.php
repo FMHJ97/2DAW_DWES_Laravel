@@ -22,6 +22,6 @@ Route::middleware('auth')->group(function () {
 Permite crear las rutas de los métodos de un controlador.
 Además, se le puede añadir un middleware para proteger las rutas.
 */
-Route::resource('cars', CarController::class)->middleware('auth');
+Route::resource('cars', CarController::class)->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';
