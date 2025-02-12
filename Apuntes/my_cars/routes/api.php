@@ -10,5 +10,6 @@ Route::get('/user', function (Request $request) {
 
 /*
 Permite crear las rutas de los métodos de un controlador.
+Se utiliza el middleware 'auth:basic' para proteger las rutas contra accesos no autorizados.
 */
-Route::apiResource('cars', APICarController::class);
+Route::apiResource('cars', APICarController::class)->middleware('auth:basic');

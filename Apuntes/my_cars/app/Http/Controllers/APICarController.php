@@ -27,7 +27,14 @@ class APICarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Creamos un nuevo coche con los datos recibidos
+        // sin realizar ninguna validación.
+        $car = Car::create($request->all());
+        // Devolvemos un JSON con el coche creado.
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'Coche creado correctamente',
+        ], 201); // Código HTTP 201 => Created.
     }
 
     /**
@@ -50,7 +57,15 @@ class APICarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Recuperamos el coche por su ID.
+        $car = Car::find($id);
+        // Actualizamos el coche con los datos recibidos.
+        $car->update($request->all());
+        // Devolvemos un JSON con el coche actualizado.
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'Coche actualizado correctamente',
+        ], 200); // Código HTTP 200 => OK.
     }
 
     /**
@@ -58,6 +73,14 @@ class APICarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Recuperamos el coche por su ID.
+        $car = Car::find($id);
+        // Eliminamos el coche.
+        $car->delete();
+        // Devolvemos un JSON con el coche eliminado.
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'Coche eliminado correctamente',
+        ], 200); // Código HTTP 200 => OK.
     }
 }
