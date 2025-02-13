@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use App\Models\Car;
 use Livewire\Component;
+use Livewire\Attributes\On;
+
+#[On('insert_coche')]
 
 class CarList extends Component
 {

@@ -5,7 +5,8 @@
     Buscar: <input type="text" wire:model.live="search"
         class="w-1/4 px-3 py-1 mb-5 border rounded-lg dark:text-gray-800">
     <br>
-    Valor: {{ $search }}
+    {{-- Llamada al componente CreateCar --}}
+    @livewire('create-car')
     @if ($cars->isEmpty())
         <p class="text-xl font-semibold text-gray-500 dark:text-yellow-400">No se encontraron coches</p>
     @else
