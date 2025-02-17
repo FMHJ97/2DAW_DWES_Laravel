@@ -5,11 +5,21 @@ namespace App\Livewire;
 use App\Models\Car;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 
 #[On('insert_coche')]
 
 class CarList extends Component
 {
+
+    /*
+    Permite la paginación de los registros de la tabla cars.
+    WithoutUrlPagination: Permite que la paginación no se vea reflejada
+    en la URL.
+    */
+    use WithPagination, WithoutUrlPagination;
+
     public $nombre;
     public $search;
     public $campo_orden = "id";
@@ -28,5 +38,13 @@ class CarList extends Component
     {
         $this->campo_orden = $campo_orden;
         $this->direccion = $this->direccion == "desc" ? "asc" : "desc";
+    }
+
+    /*
+    Nos permite actualizar la tabla de registros cada vez que se
+    realiza una búsqueda.
+    */
+    public function updateSearch() {
+        $this->resetPage();
     }
 }

@@ -165,5 +165,11 @@
                 @endforeach
             </tbody>
         </table>
+        {{--  Paginación --}}
+        <div class="mt-5">
+            {{ $cars->links() }}
+        </div>
+    @else
+        <p class="text-xl font-semibold text-gray-500 dark:text-yellow-400">No se encontraron coches</p>
     @endif
 </div>
